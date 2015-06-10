@@ -1,1 +1,1 @@
-# resize_event
+# resize_events
