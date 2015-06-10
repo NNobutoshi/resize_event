@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>sample</title>
+<style type="text/css">
+body,html {
+	
+}
+#test1 {
+	display    : block;
+	background : #f77;
+	padding    : 10px;
+	max-width  : 980px;
+	max-height : 20px;
+}
+</style>
+
+</head>
+<body class="base">
+<div id="container">
+<div id="test1">text</div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+<script src="../jquery.resize_events.js"></script>
+<script type="text/javascript">
+(function($){
+	$display1 = $('<div>').appendTo('#container');
+	$display2 = $('<div>').appendTo('#container');
+	$('#test1').on('elementresize',(function(){
+		var
+		 c = 0
+		;
+		return function(){
+			$display1.text(((c)?'('+ c +')' +' ':'') +'element has been resized');
+			c++;
+		};
+	})());
+	$('#test1').on('fontresize',(function(){
+		var
+		 c = 0
+		;
+		return function(){
+			$display2.text(((c)?'('+ c +')' +' ':'') +'font has been resized');
+			c++;
+		};
+	})());
+})(jQuery);
+
+</script>
+</body>
+</html>
