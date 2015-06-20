@@ -1,1 +1,1 @@
-# resize_events
+# jQuery.resize_events

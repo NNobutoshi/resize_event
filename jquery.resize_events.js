@@ -1,6 +1,8 @@
 /*!
-* License : MIT
+* jQuery.resize_events
+* version : 1.0.1
 * link    : https://github.com/NNobutoshi/resize_events/
+* License : MIT
 */
 
 /*! elementresize  */
