@@ -1,6 +1,6 @@
 /*!
 * jQuery.resize_events
-* version : 1.0.2
+* version : 1.0.3
 * link    : https://github.com/NNobutoshi/resize_events/
 * License : MIT
 */
@@ -8,13 +8,13 @@
 /*! elementresize  */
 ;(function($,window) {
   var
-   eventName = 'elementresize'
-  ,interval  = 200
+     eventName = 'elementresize'
+    ,interval  = 200
   ;
   $.event.special[eventName] = {
     setup : function(){
       var
-       $this = $(this)
+         $this = $(this)
       ;
       $this.data(eventName,{
          width  : $this.width()
@@ -22,13 +22,13 @@
         ,timer  : window.setInterval(
           function(){
             var
-             data   = $this.data(eventName)
-            ,width  = $this.width()
-            ,height = $this.height()
+               data   = $this.data(eventName)
+              ,width  = $this.width()
+              ,height = $this.height()
             ;
             if (
-               data.width  !== width
-            || data.height !== height
+                 data.width  !== width
+              || data.height !== height
             ) {
               data.width  = width;
               data.height = height;
@@ -41,7 +41,7 @@
     }
     ,teardown : function(){
       var
-       $this = $(this)
+         $this = $(this)
       ;
       window.clearInterval($this.data(eventName).timer);
       $this.removeData(eventName);
@@ -60,18 +60,16 @@
 /*! fontresize  */
 (function($){
   var
-   className   = 'js-checker'
-  ,eventName   = 'fontresize'
-  ,triggerName = 'elementresize'
-  ,$checker
+     className   = 'js-checker'
+    ,eventName   = 'fontresize'
+    ,triggerName = 'elementresize'
+    ,$checker
   ;
-
   $.event.special[eventName] = {
-
     setup: function(){
       var
-       $this    = $(this)
-      ,$checker = $('<ins class="'+ className +'">&nbsp;</ins>')
+         $this    = $(this)
+        ,$checker = $('<ins class="'+ className +'">&nbsp;</ins>')
         .css({
            display  : 'block'
           ,left     : '-9999px'
@@ -87,9 +85,8 @@
     }
     ,teardown : function(){
       var
-       $this = $(this)
+         $this = $(this)
       ;
-
       $this
         .data(eventName)
         .unbind(triggerName,function(){
@@ -105,5 +102,4 @@
       : this.trigger(eventName)
       ;
   };
-
 })(jQuery);

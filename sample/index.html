@@ -12,9 +12,7 @@
 	max-width  : 980px;
 	max-height : 20px;
 }
-
 </style>
-
 </head>
 <body class="base">
 <div id="container">
@@ -28,24 +26,23 @@
 	$display2 = $('<div>').appendTo('#container');
 	$('#test1').on('elementresize',(function(){
 		var
-		 c = 0
+		   c = 0
 		;
 		return function(){
 			$display1.text(((c)?'('+ c +')' +' ':'') +'element has been resized');
-			c++;
+			++c;
 		};
 	})());
 	$('#test1').on('fontresize',(function(){
 		var
-		 c = 0
+		   c = 0
 		;
 		return function(){
 			$display2.text(((c)?'('+ c +')' +' ':'') +'font has been resized');
-			c++;
+			++c;
 		};
 	})());
 })(jQuery);
-
 </script>
 </body>
 </html>
