@@ -1,105 +1,104 @@
 /*!
 * jQuery.resize_events
-* version : 1.0.3
+* version : 1.0.2
 * link    : https://github.com/NNobutoshi/resize_events/
 * License : MIT
 */
 
 /*! elementresize  */
-;(function($,window) {
+( function( $, window ) {
   var
-     eventName = 'elementresize'
+    eventName  = 'elementresize'
     ,interval  = 200
   ;
-  $.event.special[eventName] = {
-    setup : function(){
+  $.event.special[ eventName ] = {
+    setup : function() {
       var
-         $this = $(this)
+        $this = $( this )
       ;
-      $this.data(eventName,{
-         width  : $this.width()
+      $this.data( eventName, {
+        width   : $this.width()
         ,height : $this.height()
-        ,timer  : window.setInterval(
-          function(){
-            var
-               data   = $this.data(eventName)
-              ,width  = $this.width()
-              ,height = $this.height()
-            ;
-            if (
-                 data.width  !== width
-              || data.height !== height
-            ) {
-              data.width  = width;
-              data.height = height;
-              $this.triggerHandler(eventName);
-            }
+        ,timer  : window.setInterval( function() {
+          var
+            data    = $this.data( eventName )
+            ,width  = $this.width()
+            ,height = $this.height()
+          ;
+          if (
+            data.width  !== width || data.height !== height
+          ) {
+            data.width  = width;
+            data.height = height;
+            $this.triggerHandler( eventName );
           }
-          ,interval
-        )
-      });
+        }, interval )
+      } );
     }
     ,teardown : function(){
       var
-         $this = $(this)
+        $this = $( this )
       ;
-      window.clearInterval($this.data(eventName).timer);
-      $this.removeData(eventName);
+      window.clearInterval( $this.data( eventName ).timer );
+      $this.removeData( eventName );
     }
   };
 
-  $.fn[eventName] = function(data,fn){
+  $.fn[eventName] = function( data, fn ) {
     return arguments.length > 0
-      ? this.bind(eventName,data,fn)
-      : this.trigger(eventName)
-      ;
+      ? this.bind( eventName, data, fn )
+      : this.trigger( eventName )
+    ;
   };
 
-})(jQuery,window);
+} )( jQuery, window );
 
 /*! fontresize  */
-(function($){
+( function( $ ) {
   var
-     className   = 'js-checker'
+    className    = 'js-checker'
     ,eventName   = 'fontresize'
     ,triggerName = 'elementresize'
-    ,$checker
   ;
+
   $.event.special[eventName] = {
+
     setup: function(){
       var
-         $this    = $(this)
+        $this    = $(this)
         ,$checker = $('<ins class="'+ className +'">&nbsp;</ins>')
-        .css({
-           display  : 'block'
-          ,left     : '-9999px'
-          ,position : 'absolute'
-        })
-        .prependTo(($.isWindow(this))?'body':this)
-        .bind(triggerName,function(){
-          $this.trigger(eventName);
-        })
+          .css( {
+            display   : 'block'
+            ,left     : '-9999px'
+            ,position : 'absolute'
+          } )
+          .prependTo( ( $.isWindow( this ) )? 'body': this )
+          .bind( triggerName, function() {
+            $this.trigger( eventName );
+          } )
       ;
 
-      $this.data(eventName,$checker);
+      $this.data( eventName, $checker );
     }
-    ,teardown : function(){
+    ,teardown : function() {
       var
-         $this = $(this)
+        $this = $(this)
       ;
+
       $this
-        .data(eventName)
-        .unbind(triggerName,function(){
-          $this.trigger(eventName);
-        })
+        .data( eventName )
+        .unbind( triggerName, function() {
+          $this.trigger( eventName );
+        } )
         .remove()
       ;
     }
   };
-  $.fn[eventName] = function(data,fn){
+  $.fn[eventName] = function( data, fn ){
     return arguments.length > 0
-      ? this.bind(eventName,data,fn)
-      : this.trigger(eventName)
-      ;
+      ? this.bind( eventName, data, fn )
+      : this.trigger( eventName )
+    ;
   };
-})(jQuery);
+
+} )( jQuery );
